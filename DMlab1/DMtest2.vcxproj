@@ -139,8 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="libList.c" />
-    <ClCompile Include="visual.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="libSet.c" />
   </ItemGroup>

@@ -1,5 +1,4 @@
-#ifndef HEADER_H_INCLUDED
-#define HEADER_H_INCLUDED
+
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
@@ -93,7 +92,6 @@ void SetAction(char* str, error_t* err, int comand);
 set_t* SetFindInStr(char* str, int arg, error_t* err);
 char* SetNewName(char* str);
 void SetAddToList(set_t* set);
-void GreetingMessage();
+void Start();
 void Help(char* str, error_t* err);
 void IsExists(char* str, error_t* err);
-#endif
