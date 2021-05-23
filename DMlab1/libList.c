@@ -1,4 +1,4 @@
-#include "header.h"
+#include "libSet.h"
 
 // Сравнивает два элемента
 elem_t* ElemCompare(elem_t* elem1, elem_t* elem2) {

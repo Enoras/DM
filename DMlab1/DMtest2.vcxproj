@@ -139,13 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="elem.c" />
-    <ClCompile Include="interface.c" />
+    <ClCompile Include="libList.c" />
+    <ClCompile Include="visual.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="set.c" />
+    <ClCompile Include="libSet.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header.h" />
+    <ClInclude Include="libSet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

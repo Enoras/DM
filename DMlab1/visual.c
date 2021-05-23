@@ -1,4 +1,4 @@
-#include "header.h"
+#include "libSet.h"
 
 extern list_of_sets list;
 
