@@ -1,0 +1,4 @@
+C:\Users\raula\source\repos\DMtest2\Debug\DMtest2.exe
+C:\Users\raula\source\repos\DMtest2\Debug\DMtest2.pdb
+D:\Documents\DM\DMlab1\Debug\DMtest2.exe
+D:\Documents\DM\DMlab1\Debug\DMtest2.pdb
