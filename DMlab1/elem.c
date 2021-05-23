@@ -1,6 +1,6 @@
 #include "header.h"
 
-//Сравнивает два элемента
+// Сравнивает два элемента
 elem_t* ElemCompare(elem_t* elem1, elem_t* elem2) {
 
   int i,len1=0, len2=0;

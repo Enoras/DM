@@ -1,6 +1,6 @@
 #include "header.h"
 
-list_of_sets list;
+ list_of_sets list;
 set_t* tail = NULL;
  
 //Вывод множества на экран

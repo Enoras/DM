@@ -11,7 +11,7 @@
 
 #define MAX(x,y) ((x)>(y)?(x):(y))
 
-typedef enum {
+ typedef enum {
   FALSE = 0,
   TRUE = 1,
 }bool_t;
