@@ -2,13 +2,14 @@
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
-#define SIZE 81
-#define NAMESIZE 20
-#define COMMANDSIZE 20
-#define ALL_COMANDS 14
-#define WHOLESIZE 120
 
+#define NAME_SIZE 20
+#define COMMAND 20
+#define NUM_COMANDS 14
+#define SIZE2 120
 #define MAX(x,y) ((x)>(y)?(x):(y))
+#define SIZE 81
+
 
  typedef enum {
   FALSE = 0,
@@ -22,13 +23,13 @@ typedef struct elem_t {
 
 typedef struct set_t{
   elem_t* elem;
-  char name[NAMESIZE];
+  char name[NAME_SIZE];
   struct set_t* next;
 } set_t;
 
 typedef struct list_of_sets {
   set_t* head;
-}list_of_sets;
+}list_sets;
 
 typedef enum {
   NO_ERROR = 0,

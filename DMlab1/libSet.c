@@ -1,7 +1,6 @@
 #include "libSet.h"
 
- list_of_sets list;
-set_t* tail = NULL;
+ list_sets list;
  
 //Вывод множества на экран
 void SetPrint(set_t * set) {
@@ -14,6 +13,8 @@ void SetPrint(set_t * set) {
     temp = temp->next;
   }
 }
+
+set_t* tail = NULL;
 
 //Вывод всех множеств на экран
 void SetAllPrint() {
@@ -39,7 +40,7 @@ set_t* SetCreate(char* name, error_t* err) {
   bool_t EXISTS = FALSE;
   set_t* temp = list.head;
   //Имя множества
-  for (i = 0; i < NAMESIZE; i++) {
+  for (i = 0; i < NAME_SIZE; i++) {
 
     if (name[i] != '"' && name[i] != '\n') {
       set->name[j] = name[i];
@@ -48,7 +49,7 @@ set_t* SetCreate(char* name, error_t* err) {
 
     if (name[i] == '\n') {
       set->name[j] = '\0';
-      i = NAMESIZE; //Выход из цикла
+      i = NAME_SIZE; //Выход из цикла
     }
   }
   set->next = NULL;
@@ -60,7 +61,7 @@ set_t* SetCreate(char* name, error_t* err) {
     EXISTS = TRUE;
 
     i = 0;
-    while (temp->name[i] != '\0' || set->name[i] != '\0' || i <= NAMESIZE) {
+    while (temp->name[i] != '\0' || set->name[i] != '\0' || i <= NAME_SIZE) {
 
       if (temp->name[i] != set->name[i]) {
         EXISTS = FALSE;
@@ -275,7 +276,7 @@ set_t* SetUnion(set_t* set1, set_t* set2) {
       temp2 = temp2->next;
     }
 
-    //добавляем newelem во множество с проверкой, что такого элемента нет
+  
     search = set3->elem;
     while (search) {
       if (IsElemsEqual(search, newelem)) {
@@ -592,7 +593,7 @@ set_t* SetFindInStr(char* str, int arg, error_t* err) {
   char* cursor = str;
   int i = 0, comma = 0; //нужны вторые кавычки 
   set_t* set = NULL;
-  while (i < WHOLESIZE) {
+  while (i < SIZE2) {
 
     if (*cursor == '"') {
       comma++;
@@ -608,7 +609,7 @@ set_t* SetFindInStr(char* str, int arg, error_t* err) {
   if (!set) 
     *err = SET_DOES_NOT_EXIST;
   
-  if (i == WHOLESIZE) 
+  if (i == SIZE2) 
     *err = MEMORY;
   
   if (*err)
@@ -619,7 +620,7 @@ set_t* SetFindInStr(char* str, int arg, error_t* err) {
 
 //Возвращает имя нового множества (для команд объединения, пересечения и т.д.)
 char* SetNewName(char* str) {
-  char* name = (char*)malloc(NAMESIZE * sizeof(char));
+  char* name = (char*)malloc(NAME_SIZE * sizeof(char));
   if (!name)
     return NULL;
   int j = 0;
@@ -642,7 +643,7 @@ char* SetNewName(char* str) {
     return NULL;
   }
   j = i;
-  for (i; i < (j+NAMESIZE); i++) {
+  for (i; i < (j+NAME_SIZE); i++) {
     name[i-j] = str[i+1];
     if (i != j && name[i - j] == '"') {
       name[i - j] = '\0';
@@ -670,10 +671,10 @@ bool_t Run(char* const str) {
     int size = 0;
     int i = 0, j = 0;
     command_t comandType = COMMAND_NOT_FOUND;
-    char comands[ALL_COMANDS][COMMANDSIZE] = { "create", "add", "exit", "show"\
+    char comands[NUM_COMANDS][COMMAND] = { "create", "add", "exit", "show"\
       ,"remove", "power", "contain", "union", "intersection", "difference",\
       "symmetricdifference", "help", "destroy", "exist" };
-    int commandLength[ALL_COMANDS] = { 6,3,4,4,6,5,7,5,12,10,19,4,7,5 };
+    int commandLength[NUM_COMANDS] = { 6,3,4,4,6,5,7,5,12,10,19,4,7,5 };
 
     if (str[i] != '/') { //начало команды
 
@@ -689,14 +690,14 @@ bool_t Run(char* const str) {
     }
 
     //Находим нужную команду из списка команд
-    for (i = 0; i < ALL_COMANDS; i++) {
+    for (i = 0; i < NUM_COMANDS; i++) {
         for (j = 0; j < size; j++) {
             if (str[j + 1] != comands[i][j])
                 j = size; //пропускаем эту команду
               //нашли команду
             else if (j == size - 1 && size == commandLength[i]) {
                 comandType = i; //Запомнили нужную команду
-                i = ALL_COMANDS;
+                i = NUM_COMANDS;
             }
         }
     }
@@ -818,7 +819,7 @@ void Create(char* name, error_t* err) {
     }
     i = 1;
     //Проверка имени
-    while (name[i] != '\n' && i <= NAMESIZE) {
+    while (name[i] != '\n' && i <= NAME_SIZE) {
         //недопустимый символ
         if (name[i] < ' ' || name[i]>'~') {
             *err = INCORRECT_SYMBOL;
@@ -834,7 +835,7 @@ void Create(char* name, error_t* err) {
             invertedcommas++;
     }
 
-    if (i >= NAMESIZE) {
+    if (i >= NAME_SIZE) {
         *err = MEMORY;
         return;
     }
@@ -976,7 +977,7 @@ void SetAction(char* str, error_t* err, int comand) {
         EXISTS = TRUE;
 
         i = 0;
-        while (temp->name[i] != '\0' || name[i] != '\0' || i <= NAMESIZE) {
+        while (temp->name[i] != '\0' || name[i] != '\0' || i <= NAME_SIZE) {
 
             if (temp->name[i] != name[i]) {
                 EXISTS = FALSE;
@@ -1012,7 +1013,7 @@ void SetAction(char* str, error_t* err, int comand) {
         set3 = SetSymmetricDifference(set1, set2);
 
     i = 0;
-    while ((name[i] != '\0' || j == 0) && i < NAMESIZE) {
+    while ((name[i] != '\0' || j == 0) && i < NAME_SIZE) {
         if (name[i] != '"')
             set3->name[j++] = name[i];
         i++;
@@ -1020,7 +1021,7 @@ void SetAction(char* str, error_t* err, int comand) {
     set3->name[j] = '\0';
     free(name);
 
-    if (i == NAMESIZE) {
+    if (i == NAME_SIZE) {
         *err = SYNTAX_ERROR;
         SetDestroy(set3);
         return;
@@ -1210,7 +1211,6 @@ bool_t ElemRemove(set_t* set, elem_t* elem) {
 }
 
 //Проверка, принадлежит ли элемент множеству
-//Если да, вернет указатель на элемент. Иначе NULL
 elem_t* ElemFind(set_t* set, char* str) {
     if (!set)
         return NULL;

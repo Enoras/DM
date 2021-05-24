@@ -3,16 +3,17 @@
 #define _CRTDBG_MAP_ALLOC
 
 int main(void) {
-  bool_t ok = TRUE;
-  char arr[120];
+
+  char input[120];
 
   // Начальное сообщение
   Start();
 
+  bool_t ok = TRUE;
   // Основной цикл
   do {
-    fgets(arr, 120, stdin);
-    ok = Run(arr);
+    fgets(input, 120, stdin);
+    ok = Run(input);
   } while (ok);
 
   //Проверка на утечку памяти
