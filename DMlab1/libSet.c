@@ -9,7 +9,7 @@ void SetPrint(set_t * set) {
 
   elem_t* temp = set->elem;
   while (temp) {
-    printf("%s\n", temp->str);
+    printf("\"%s\"\n", temp->str);
     temp = temp->next;
   }
 }
@@ -915,7 +915,7 @@ void Power(char* str, error_t* err) {
     if (set)
         printf("Power: %i\n", SetPower(set));
     else
-        *err = SYNTAX_ERROR;
+        *err = SET_DOES_NOT_EXIST;
 
 }
 
@@ -1047,7 +1047,7 @@ void Help(char* str, error_t* err) {
     printf("/intersection \"set1\" \"set2\" \"name\" - create a set with name as an intersection of set1 and set2\n");
     printf("/difference \"set1\" \"set2\" \"name\" - create a set with name as a difference of set1 and set2\n");
     printf("/symmetricdifference \"set1\" \"set2\" \"name\" - create a set with name as a symmetric difference of set1 and set2\n");
-    printf("/exist \"string\" \"set\" - check if string exists in this set");
+    printf("/exist \"string\" \"set\" - check if string exists in this set\n");
     printf("/exit - delete all sets and close the programm\n");
     printf("************************************************************************************************************************\n");
 }
